@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html ng-app="fishing123">
+    <head>
+        <title>fishing123.com</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+        <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+
+        <style>
+            h1 {
+                text-align: center;
+                font-size: 32px;
+            }
+            
+            img#fish{
+                width: 100%;
+            }
+            
+            h2 {
+                font-size: 20px;
+            }
+            
+            img#fish{
+                    width: 600px;
+            }
+
+            @media screen and (max-width: 720px){
+                img#fish{
+                    width: 80%;
+                }
+                h1 {
+                    font-size: 32px;
+                }
+                h2 {
+                    font-size: 20px;
+                }
+            }
+
+            @media screen and (max-width: 480px){
+                h1 {
+                    font-size: 22px;
+                }
+                h2 {
+                    font-size: 18px;
+                }
+            }
+            
+            @media screen and (max-width: 360px){
+                h1 {
+                    font-size: 18px;
+                }
+                h2 {
+                    font-size: 16px;
+                }
+            }
+        </style>
+        <script>
+                    $(document).ready(function(e) {
+            showViewportSize();
+            });
+                    $(window).resize(function(e) {
+            showViewportSize();
+            });
+                    function showViewportSize() {
+                    $('#viewport_width').text($(window).width());
+                            $('#viewport_height').text($(window).height());
+                    }
+        </script>
+    </head>
+    <body>
+        <h2>width:<span id="viewport_width"></span> height:<span id="viewport_height"></span></h2>
+        <div class="page-header">
+            <h1>Fish Species <small>蒙特利尔鱼类</small></h1>
+        </div>
+        <div style="margin: 5px;" ng-controller="FishSpeciesInQuebec as species">
+            <div ng-class-odd="'panel panel-success'" ng-class-even="'panel panel-info'" ng-repeat="fish in species.fish">
+                <div class="panel-heading">
+                    <h2>{{ $index + 1}} ~ {{fish.name}} - <small>{{fish.cnName}}</small></h2>
+                </div>
+                <div class="panel-body">
+                    <img id="fish" alt="click to show more images" src="images/{{fish.image}}"/>
+                    <h2>渔季：{{fish.period}}</h2>
+                    <h2>数量限制：{{fish.catchLimit}}</h2>
+                    <h2>尺寸限制：{{fish.lengthLimit}}</h2>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.10/angular.min.js"></script>
+        <script type="text/javascript" src="app.js"></script>
+    </body>
+</html>
